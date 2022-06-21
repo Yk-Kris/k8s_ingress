@@ -1,0 +1,16 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-tomcat
+  namespace: default
+  annotations:
+    kubernets.io/ingress.class: "nginx"
+spec:
+  rules:
+  - host: tomcat.kris.com
+    http:
+      paths:
+      - path: #配置访问路径，通过URL进行转发，默认为/
+        backend: #配置后端服务
+          serviceName: tomcat-svc
+          servicePort: 8080
